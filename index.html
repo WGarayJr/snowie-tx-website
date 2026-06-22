@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snowie Texas — Houston's Mobile Drink Party</title>
+  <meta name="description" content="Shaved ice, fresh lemonade, dirty sodas, iced coffee & more. Snowie Texas brings a full drink bar to your event in Pearland and Greater Houston.">
+  <meta property="og:title" content="Snowie Texas — Houston's Mobile Drink Party">
+  <meta property="og:description" content="Shaved ice, fresh lemonade, dirty sodas, iced coffee & more. We bring the drinks to your event!">
+  <meta property="og:image" content="images/hero.png">
+  <meta property="og:url" content="https://snowietx.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://snowietx.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "Snowie Texas",
+    "description": "Mobile shaved ice and drink catering for events in Greater Houston",
+    "url": "https://snowietx.com",
+    "telephone": "+18325965433",
+    "email": "Jessica@SnowieTX.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1816 Lazy Creek Ln",
+      "addressLocality": "Pearland",
+      "addressRegion": "TX",
+      "postalCode": "77581"
+    },
+    "areaServed": "Greater Houston",
+    "priceRange": "$225-$525",
+    "sameAs": [
+      "https://www.facebook.com/SnowieTexas",
+      "https://www.instagram.com/snowie.tx",
+      "https://www.tiktok.com/@snowietexas"
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --berry: #C41E68;
+      --berry-dark: #9E1854;
+      --berry-light: #F5E1EB;
+      --mint: #4ECDC4;
+      --mint-dark: #38A89D;
+      --charcoal: #2D2D2D;
+      --warm-white: #FFF9F5;
+      --white: #FFFFFF;
+      --gray-100: #F5F3F0;
+      --gray-300: #D1CCC6;
+      --gray-500: #8A8580;
+      --gray-700: #4A4744;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    button { font-family: inherit; }
+
+    /* Focus styles */
+    :focus-visible {
+      outline: 3px solid var(--mint);
+      outline-offset: 2px;
+    }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    .nav.scrolled .nav-links a { color: var(--charcoal); }
+    .nav-links a:hover { color: var(--berry); }
+    .nav-cta {
+      background: var(--berry);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover {
+      background: var(--berry-dark);
+      transform: translateY(-1px);
+    }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      margin: 5px 0;
+      transition: background 0.3s;
+    }
+    .nav.scrolled .mobile-toggle span { background: var(--charcoal); }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 2rem 6rem;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.0) 30%, rgba(196,30,104,0.85) 75%),
+        url('images/hero.png')
+        center 20% / cover no-repeat;
+    }
+    .hero-content {
+      max-width: 700px;
+      color: var(--white);
+    }
+    .hero-tagline {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      opacity: 0.95;
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--berry);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-berry {
+      background: var(--berry);
+      color: var(--white);
+    }
+    .btn-berry:hover {
+      background: var(--berry-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(196,30,104,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--berry);
+      border: 2px solid var(--berry);
+    }
+    .btn-outline:hover {
+      background: var(--berry);
+      color: var(--white);
+    }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Sacramento', cursive;
+      font-size: 1.5rem;
+      color: var(--berry);
+      margin-bottom: 0.25rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    /* ---- ABOUT ---- */
+    .about {
+      background: var(--warm-white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-img {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    .about-text p {
+      color: var(--gray-700);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .about-tag {
+      background: var(--berry-light);
+      color: var(--berry);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ---- PACKAGES ---- */
+    .packages { background: var(--white); }
+    .packages-header { text-align: center; margin-bottom: 3rem; }
+    .packages-header p {
+      color: var(--gray-500);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pkg-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      background: var(--white);
+    }
+    .pkg-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .pkg-card.popular {
+      border-color: var(--berry);
+      border-width: 2px;
+    }
+    .pkg-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--berry);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pkg-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .pkg-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--berry);
+      margin-bottom: 1.5rem;
+    }
+    .pkg-details {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .pkg-details li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pkg-details li::before {
+      content: "✓";
+      color: var(--mint);
+      font-weight: 700;
+    }
+    .pkg-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--warm-white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .contact h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--gray-700);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--berry);
+      outline: none;
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .contact-info { padding-top: 0.5rem; }
+    .contact-info p {
+      color: var(--gray-700);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .contact-detail svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--berry);
+    }
+    .contact-detail a {
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-detail a:hover { color: var(--berry); }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--berry-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .social-link:hover {
+      background: var(--berry);
+      transform: translateY(-2px);
+    }
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      color: var(--berry);
+      transition: color 0.2s;
+    }
+    .social-link:hover svg { color: var(--white); }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.7);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--white); }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        gap: 1rem;
+      }
+      .nav-links.open a { color: var(--charcoal); }
+      .mobile-toggle { display: block; }
+
+      .hero {
+        min-height: 85vh;
+        padding: 0 1.5rem 4rem;
+        align-items: flex-end;
+      }
+      .hero-tagline { font-size: 2.75rem; }
+
+      section { padding: 3.5rem 1.5rem; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .about-img { order: -1; }
+
+      .packages-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+      .pkg-card, .btn, .social-link, .nav-cta { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Snowie Texas home">
+      <img src="images/logo.png" alt="Snowie Texas logo" width="83" height="70" loading="eager">
+    </a>
+    <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1 class="hero-tagline">Houston's Mobile Drink Party</h1>
+      <p class="hero-sub">Shaved ice, fresh lemonade, dirty sodas, iced coffee &amp; more. We bring the drinks to your event!</p>
+      <a href="#contact" class="btn btn-white">Book Your Event</a>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <p class="section-label">What we bring</p>
+          <h2 class="section-title">Mobile Drink Catering</h2>
+          <p>From shaved ice and fresh-squeezed lemonade to dirty sodas, iced coffee, and hot chocolate — Snowie Texas brings a full drink bar to your next event. We serve birthday parties, corporate events, weddings, school functions, HOA gatherings, and more across the Greater Houston area.</p>
+          <div class="about-tags">
+            <span class="about-tag">Shaved Ice</span>
+            <span class="about-tag">Lemonade</span>
+            <span class="about-tag">Dirty Sodas</span>
+            <span class="about-tag">Iced Coffee</span>
+            <span class="about-tag">Hot Chocolate</span>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="images/jessica-cart.png" alt="Jessica serving customers at the Snowie Texas lemonade cart" width="1240" height="620" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="packages" id="packages">
+    <div class="container">
+      <div class="packages-header reveal">
+        <p class="section-label">Our packages</p>
+        <h2 class="section-title">Shaved Ice Catering Packages</h2>
+        <p>We bring the shaved ice bar to your event, fully set up and ready to serve.</p>
+      </div>
+      <div class="packages-grid">
+        <div class="pkg-card reveal">
+          <h3 class="pkg-name">Sweet Start</h3>
+          <div class="pkg-price">$225</div>
+          <ul class="pkg-details">
+            <li>Up to 35 guests</li>
+            <li>1 hour of service</li>
+            <li>8 flavors</li>
+            <li>1 staff member</li>
+            <li>No setup fee</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get Started</a>
+        </div>
+        <div class="pkg-card popular reveal">
+          <span class="pkg-badge">Most Popular</span>
+          <h3 class="pkg-name">Crowd Pleaser</h3>
+          <div class="pkg-price">$375</div>
+          <ul class="pkg-details">
+            <li>Up to 60 guests</li>
+            <li>2 hours of service</li>
+            <li>8 flavors</li>
+            <li>2 staff members</li>
+            <li>No setup fee</li>
+          </ul>
+          <a href="#contact" class="btn btn-berry">Get Started</a>
+        </div>
+        <div class="pkg-card reveal">
+          <h3 class="pkg-name">The Big Chill</h3>
+          <div class="pkg-price">$525</div>
+          <ul class="pkg-details">
+            <li>Up to 100 guests</li>
+            <li>3 hours of service</li>
+            <li>10+ flavors</li>
+            <li>2-3 staff members</li>
+            <li>No setup fee</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get Started</a>
+        </div>
+      </div>
+      <p class="pkg-note">Need more time? Add an hour for +$100/hr. Every package includes all cups, spoons, syrups &amp; toppings, full setup &amp; teardown, and friendly fully-insured staff. Deposit required to hold date. Travel fee may apply beyond 20 miles of Pearland, TX.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <h2 class="section-title">Drop us a line</h2>
+          <form action="https://formsubmit.co/Jessica@SnowieTX.com" method="POST">
+            <input type="hidden" name="_subject" value="New booking inquiry from SnowieTX.com">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://snowietx.com/#contact">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us your date, location, and guest count"></textarea>
+            </div>
+            <button type="submit" class="btn btn-berry">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-info reveal">
+          <h3>Book Snowie Texas for your next event</h3>
+          <p>Tell us your date, location, and guest count and we'll send you a custom quote within 24 hours!</p>
+          <div class="contact-detail">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:8325965433">(832) 596-5433</a>
+          </div>
+          <div class="contact-detail">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="mailto:Jessica@SnowieTX.com">Jessica@SnowieTX.com</a>
+          </div>
+          <div class="contact-detail">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>Pearland &amp; Greater Houston, TX</span>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.facebook.com/SnowieTexas" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/snowie.tx" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@snowietexas" class="social-link" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Snowie Texas. All rights reserved. Pearland &amp; Greater Houston, TX.</p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Mobile menu
+    const toggle = document.querySelector('.mobile-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll reveal
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+
+</body>
+</html>
