@@ -47,6 +47,7 @@ Perfect for demos and development.
    npx supabase link --project-ref YOUR_PROJECT_REF
    npx supabase functions deploy end-event
    npx supabase secrets set RESEND_API_KEY=re_xxx
+   npx supabase secrets set APP_URL=https://your-deployed-url.vercel.app
    # optional, once you've verified a domain in Resend:
    npx supabase secrets set FROM_EMAIL="RollCall <hello@yourdomain.com>"
    ```
@@ -59,7 +60,7 @@ Perfect for demos and development.
 ## Roadmap ideas
 
 - Organizer accounts (Supabase Auth) + event history
-- CSV export of attendees
+- Stripe payments (per-event or subscription for recurring organizers)
 - vCard / "add to contacts" links in the roster email
 - Rate limiting on check-in (Supabase edge middleware or Cloudflare Turnstile)
 - Custom branding per event

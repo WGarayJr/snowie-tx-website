@@ -132,7 +132,9 @@ export function rosterText(eventName: string, attendees: Attendee[]): string {
     '',
     ...lines,
     '',
+    '—',
     'Sent with RollCall — check in now, connect after.',
+    `Host your own event: ${window.location.origin}`,
   ].join('\n')
 }
 

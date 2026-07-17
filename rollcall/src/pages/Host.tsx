@@ -51,6 +51,25 @@ export default function Host() {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  function downloadCsv() {
+    if (!event) return
+    const esc = (v: string | boolean | null) => {
+      const s = v === null ? '' : String(v)
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
+    }
+    const rows = [
+      ['name', 'email', 'company', 'linkedin', 'share_contact', 'checked_in_at'],
+      ...event.attendees.map((a) => [a.name, a.email, a.company, a.linkedin, a.share_contact, a.created_at]),
+    ]
+    const csv = rows.map((r) => r.map(esc).join(',')).join('\n')
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }))
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${event.name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-attendees.csv`
+    link.click()
+    URL.revokeObjectURL(url)
+  }
+
   async function onEndEvent() {
     if (!window.confirm('End the event and email the contact list to everyone who opted in?')) return
     setEnding(true)
@@ -110,15 +129,20 @@ export default function Host() {
           {event.attendees.length === 0 ? (
             <p className="sub">No check-ins yet — updates live every few seconds.</p>
           ) : (
-            <ul className="attendees">
-              {[...event.attendees].reverse().map((a) => (
-                <li key={a.email}>
-                  <strong>{a.name}</strong>
-                  {a.company ? <span className="sub"> · {a.company}</span> : null}
-                  <span className="pill">{a.share_contact ? 'sharing' : 'private'}</span>
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="attendees">
+                {[...event.attendees].reverse().map((a) => (
+                  <li key={a.email}>
+                    <strong>{a.name}</strong>
+                    {a.company ? <span className="sub"> · {a.company}</span> : null}
+                    <span className="pill">{a.share_contact ? 'sharing' : 'private'}</span>
+                  </li>
+                ))}
+              </ul>
+              <button className="secondary csv" onClick={downloadCsv}>
+                Download CSV
+              </button>
+            </>
           )}
         </div>
       </div>

@@ -9,6 +9,8 @@
 //   RESEND_API_KEY  — from https://resend.com (free tier is fine to start)
 //   FROM_EMAIL      — optional; defaults to "RollCall <onboarding@resend.dev>".
 //                     Set to an address on your verified Resend domain in production.
+//   APP_URL         — optional; public URL of the app. When set, roster emails end
+//                     with a "Host your own event" link (the viral loop).
 
 import { createClient } from 'jsr:@supabase/supabase-js@2'
 
@@ -32,7 +34,7 @@ interface Attendee {
   share_contact: boolean
 }
 
-function rosterText(eventName: string, shared: Attendee[]): string {
+function rosterText(eventName: string, shared: Attendee[], appUrl: string | undefined): string {
   const lines = shared.map((a) => {
     const extras = [a.company, a.linkedin].filter(Boolean).join(' · ')
     return `• ${a.name} — ${a.email}${extras ? ` (${extras})` : ''}`
@@ -46,7 +48,10 @@ function rosterText(eventName: string, shared: Attendee[]): string {
     '',
     ...lines,
     '',
+    '—',
     'Sent with RollCall — check in now, connect after.',
+    // Viral loop: every roster email invites recipients to host their own event.
+    ...(appUrl ? [`Host your own event: ${appUrl}`] : []),
   ].join('\n')
 }
 
@@ -92,7 +97,7 @@ Deno.serve(async (req) => {
   if (attErr) return json({ error: 'Failed to load attendees' }, 500)
 
   const shared = (attendees ?? []).filter((a: Attendee) => a.share_contact)
-  const body = rosterText(event.name, shared)
+  const body = rosterText(event.name, shared, Deno.env.get('APP_URL'))
   const from = Deno.env.get('FROM_EMAIL') ?? 'RollCall <onboarding@resend.dev>'
   const resendKey = Deno.env.get('RESEND_API_KEY')
 

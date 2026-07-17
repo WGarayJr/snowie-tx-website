@@ -147,6 +147,7 @@ button.danger:hover { background: var(--danger-dark); }
 }
 
 .attendees { list-style: none; display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; }
+button.csv { margin-top: 14px; }
 .attendees li { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 .pill {
   float: right;
